@@ -1166,10 +1166,18 @@ func (m *nfdMaster) configure(filepath string, overrides string) error {
 
 // addNs adds a namespace if one isn't already found from src string
 func addNs(src string, nsToAdd string) string {
-	if strings.Contains(src, "/") {
+	if strings.Contains(src, "/") || containsHW(src) {
 		return src
 	}
 	return path.Join(nsToAdd, src)
+}
+
+// containsHW returns true if the label contains Huawei's keys
+func containsHW(src string) bool {
+	if strings.Contains(src, "accelerator") || src == "host-arch" {
+		return true
+	}
+	return false
 }
 
 // splitNs splits a name into its namespace and name parts

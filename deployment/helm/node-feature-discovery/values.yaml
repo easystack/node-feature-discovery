@@ -1,9 +1,9 @@
 image:
-  repository: registry.k8s.io/nfd/node-feature-discovery
+  repository: docker.io/taenyang/node-feature-discovery
   # This should be set to 'IfNotPresent' for released version
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # tag, if defined will use the given image tag, else Chart.AppVersion will be used
-  # tag
+  tag: latest
 imagePullSecrets: []
 
 nameOverride: ""
@@ -482,3 +482,5 @@ topologyGC:
 tls:
   enable: false
   certManager: false
+
+nodefeaturerules : true

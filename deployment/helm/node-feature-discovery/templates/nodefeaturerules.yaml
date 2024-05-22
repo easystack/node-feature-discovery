@@ -1,0 +1,17 @@
+{{- if .Values.nodefeaturerules }}
+apiVersion: nfd.k8s-sigs.io/v1alpha1
+kind: NodeFeatureRule
+metadata:
+  name: npu-test
+spec:
+  rules:
+    - name: "npu"
+      labels:
+        "host-arch": "huawei-arm"
+        "accelerator": "huawei-Ascend910"
+        "accelerator-type": "module-910b-8"
+      matchFeatures:
+        - feature: pci.device
+          matchExpressions:
+              vendor: {op: In, value: ["10de"]}
+{{- end }}
