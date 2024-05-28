@@ -511,3 +511,5 @@ tls:
 prometheus:
   enable: false
   labels: {}
+
+nodefeaturerules: true
