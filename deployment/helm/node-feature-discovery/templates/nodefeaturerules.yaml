@@ -1,0 +1,36 @@
+{{- if .Values.nodefeaturerules }}
+apiVersion: nfd.k8s-sigs.io/v1alpha1
+kind: NodeFeatureRule
+metadata:
+  name: npu
+spec:
+  rules:
+    - name: "ascend/atlas-800t-a2-arm"
+      labels:
+        "node-role.kubernetes.io/worker": "worker"
+        "workerselector": "dls-worker-node"
+        "host-arch": "huawei-arm"
+        "accelerator": "huawei-Ascend910"
+      matchFeatures:
+        - feature: pci.device
+          matchExpressions:
+            vendor: {op: In, value: ["19e5"]}
+            device: {op: In, value: ["d802"]}
+        - feature: kernel.config
+          matchExpressions:
+            X86: {op: In, value: ["n"]}
+    - name: "ascend/atlas-800t-a2-x86"
+      labels:
+        "node-role.kubernetes.io/worker": "worker"
+        "workerselector": "dls-worker-node"
+        "host-arch": "huawei-x86"
+        "accelerator": "huawei-Ascend910"
+      matchFeatures:
+        - feature: pci.device
+          matchExpressions:
+            vendor: {op: In, value: ["19e5"]}
+            device: {op: In, value: ["d802"]}
+        - feature: kernel.config
+          matchExpressions:
+            X86: {op: In, value: ["y"]}
+{{- end }}
