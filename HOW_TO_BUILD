@@ -1,0 +1,1 @@
+IMAGE_REGISTRY=hub.easystack.cn/production IMAGE_TAG_NAME=v0.15.4-es IMAGE_ALL_PLATFORMS=linux/amd64 make image
