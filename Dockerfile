@@ -10,7 +10,7 @@ COPY go.mod go.sum /go/node-feature-discovery/
 
 WORKDIR /go/node-feature-discovery
 
-RUN go mod download
+RUN GOPROXY="http://goproxy.easystack.io,direct" go mod download
 
 # Do actual build
 COPY . /go/node-feature-discovery
